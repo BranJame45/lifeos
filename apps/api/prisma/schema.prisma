@@ -1,0 +1,173 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id              String        @id @default(uuid())
+  email           String        @unique
+  password        String
+  name            String
+  age             Int?
+  weight          Float?
+  height          Float?
+  goal            FitnessGoal   @default(DEFICIT)
+  activityLevel   ActivityLevel @default(MODERATE)
+  restrictions    String[]
+  mealPreferences String[]
+  trainingDays    String[]
+  trainingType    TrainingType  @default(BOTH)
+  createdAt       DateTime      @default(now())
+
+  habits        Habit[]
+  habitLogs     HabitLog[]
+  mealPlans     MealPlan[]
+  workoutPlans  WorkoutPlan[]
+  workoutLogs   WorkoutLog[]
+  shoppingLists ShoppingList[]
+  chatMessages  ChatMessage[]
+}
+
+model Habit {
+  id        String    @id @default(uuid())
+  userId    String
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  name      String
+  category  String
+  color     String
+  frequency String[]
+  target    String?
+  streak    Int       @default(0)
+  active    Boolean   @default(true)
+
+  logs HabitLog[]
+}
+
+model HabitLog {
+  id        String   @id @default(uuid())
+  habitId   String
+  habit     Habit    @relation(fields: [habitId], references: [id], onDelete: Cascade)
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  date      DateTime
+  completed Boolean  @default(false)
+  note      String?
+
+  @@unique([habitId, userId, date])
+}
+
+model MealPlan {
+  id        String   @id @default(uuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  weekStart DateTime
+  weekEnd   DateTime
+  confirmed Boolean  @default(false)
+  createdAt DateTime @default(now())
+
+  meals Meal[]
+}
+
+model Meal {
+  id          String   @id @default(uuid())
+  planId      String
+  plan        MealPlan @relation(fields: [planId], references: [id], onDelete: Cascade)
+  date        DateTime
+  type        String
+  description String
+  completed   Boolean  @default(false)
+}
+
+model WorkoutPlan {
+  id        String          @id @default(uuid())
+  userId    String
+  user      User            @relation(fields: [userId], references: [id], onDelete: Cascade)
+  weekStart DateTime
+  weekEnd   DateTime
+  confirmed Boolean         @default(false)
+  createdAt DateTime        @default(now())
+
+  sessions WorkoutSession[]
+}
+
+model WorkoutSession {
+  id          String     @id @default(uuid())
+  planId      String
+  plan        WorkoutPlan @relation(fields: [planId], references: [id], onDelete: Cascade)
+  date        DateTime
+  muscleGroup String
+  completed   Boolean    @default(false)
+  notes       String?
+
+  exercises Exercise[]
+}
+
+model Exercise {
+  id        String         @id @default(uuid())
+  sessionId String
+  session   WorkoutSession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+  name      String
+  sets      Int
+  reps      String
+  weight    Float?
+  completed Boolean        @default(false)
+}
+
+model WorkoutLog {
+  id        String   @id @default(uuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  sessionId String
+  date      DateTime
+  notes     String?
+}
+
+model ShoppingList {
+  id        String         @id @default(uuid())
+  userId    String
+  user      User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  planId    String
+  weekStart DateTime
+  createdAt DateTime       @default(now())
+
+  items ShoppingItem[]
+}
+
+model ShoppingItem {
+  id        String       @id @default(uuid())
+  listId    String
+  list      ShoppingList @relation(fields: [listId], references: [id], onDelete: Cascade)
+  name      String
+  category  String
+  purchased Boolean      @default(false)
+}
+
+model ChatMessage {
+  id        String   @id @default(uuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  role      String
+  content   String
+  createdAt DateTime @default(now())
+}
+
+enum FitnessGoal {
+  DEFICIT
+  VOLUME
+}
+
+enum ActivityLevel {
+  SEDENTARY
+  MODERATE
+  ACTIVE
+}
+
+enum TrainingType {
+  GYM
+  CALISTHENICS
+  BOTH
+}
