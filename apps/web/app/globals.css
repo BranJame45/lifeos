@@ -1,3 +1,258 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* ════════════════════════════════════════════════════════════════════════
+   LifeOS — Sistema de color v2
+   Paleta neutra (slate) para contenido + teal como acento de marca.
+   Modo claro: superficies aireadas, texto profundo.
+   Modo oscuro: superficies navy-obsidiana, acentos vibrantes, 0 negro puro.
+   WCAG AA en todos los niveles de texto.
+   ════════════════════════════════════════════════════════════════════════ */
+
+@layer base {
+  /* ── MODO CLARO ──────────────────────────────────────────────────────── */
+  :root {
+    /* Superficies */
+    --bg-app:       #f8fafb;  /* fondo general — slate-50 neutro aireado    */
+    --surface:      #ffffff;  /* tarjetas / cards                           */
+    --surface-2:    #f1f5f9;  /* rellenos internos / bg-gray-50 equiv.      */
+    --surface-3:    #e2e8f0;  /* tracks, skeleton, hover                    */
+
+    /* Bordes */
+    --border-soft:  #e2e8f0;  /* bordes suaves (≈ slate-200)               */
+    --border:       #cbd5e1;  /* bordes estándar (≈ slate-300)             */
+    --border-strong:#94a3b8;  /* bordes fuertes (≈ slate-400)              */
+
+    /* Texto — rampa de 4 niveles */
+    --text-1:       #0f172a;  /* alto énfasis — slate-900                  */
+    --text-2:       #475569;  /* secundario — slate-600                    */
+    --text-3:       #64748b;  /* terciario — slate-500                     */
+    --text-muted:   #94a3b8;  /* labels suaves — slate-400                 */
+
+    /* Aliases utilizados por Header.tsx y otros componentes */
+    --bg-card:      var(--surface);
+    --bg-subtle:    var(--surface-2);
+
+    /* Recharts / gráficos */
+    --chart-grid:     #e2e8f0;
+    --chart-axis:     #64748b;
+    --chart-tooltip-bg:   #ffffff;
+    --chart-tooltip-text: #0f172a;
+    --chart-tooltip-border: #e2e8f0;
+  }
+
+  /* ── MODO OSCURO ─────────────────────────────────────────────────────── */
+  .dark {
+    /* Superficies — navy-obsidiana profundo, sin tinte verde */
+    --bg-app:       #0c1222;  /* fondo general — navy muy profundo         */
+    --surface:      #141c2e;  /* tarjetas +1 elevación                     */
+    --surface-2:    #1a2540;  /* relleno interno +2                        */
+    --surface-3:    #223050;  /* hover/tracks +3                           */
+
+    /* Bordes */
+    --border-soft:  #1e293b;  /* ≈ slate-800                              */
+    --border:       #2a3a56;  /* navy medio                               */
+    --border-strong:#374d73;  /* borde fuerte visible                      */
+
+    /* Texto */
+    --text-1:       #e2e8f0;  /* ~90 % luminosidad — slate-200            */
+    --text-2:       #94a3b8;  /* ~68 % — slate-400                        */
+    --text-3:       #64748b;  /* ~52 % — slate-500                        */
+    --text-muted:   #475569;  /* ~40 % — slate-600                        */
+
+    /* Aliases */
+    --bg-card:      var(--surface);
+    --bg-subtle:    var(--surface-2);
+
+    /* Recharts / gráficos */
+    --chart-grid:     #1e293b;
+    --chart-axis:     #64748b;
+    --chart-tooltip-bg:   #1a2540;
+    --chart-tooltip-text: #e2e8f0;
+    --chart-tooltip-border: #2a3a56;
+  }
+
+  html { -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; }
+
+  body {
+    background-color: var(--bg-app);
+    color: var(--text-1);
+    transition: background-color 0.25s ease, color 0.25s ease;
+  }
+
+  /* Scrollbar acorde al modo */
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: #94a3b8; border-radius: 9999px; }
+  ::-webkit-scrollbar-thumb:hover { background: #64748b; }
+  .dark ::-webkit-scrollbar-thumb { background: #2a3a56; }
+  .dark ::-webkit-scrollbar-thumb:hover { background: #374d73; }
+}
+
+/* ════════════════════════════════════════════════════════════════════════
+   REMAPEO MODO OSCURO — scope: `.dark main`
+   Sólo afecta el contenido de páginas. El sidebar (siempre oscuro) y el
+   header (usa tokens) quedan intactos; el login (fuera de <main>) también.
+   ════════════════════════════════════════════════════════════════════════ */
+/* Fuera de @layer a propósito: estas reglas no deben ser eliminadas por purge. */
+
+  /* ── Neutros: superficies ──────────────────────────────────────────── */
+  .dark main .bg-white        { background-color: var(--surface) !important; }
+  .dark main .bg-gray-50      { background-color: var(--surface-2) !important; }
+  .dark main .bg-gray-100     { background-color: var(--surface-3) !important; }
+
+  /* ── Neutros: bordes ───────────────────────────────────────────────── */
+  .dark main .border-gray-100 { border-color: var(--border-soft) !important; }
+  .dark main .border-gray-200 { border-color: var(--border) !important; }
+  .dark main .border-gray-300 { border-color: var(--border-strong) !important; }
+
+  /* ── Neutros: texto (rampa) ────────────────────────────────────────── */
+  .dark main .text-gray-900   { color: var(--text-1) !important; }
+  .dark main .text-gray-800   { color: var(--text-1) !important; }
+  .dark main .text-gray-700   { color: var(--text-2) !important; }
+  .dark main .text-gray-600   { color: var(--text-2) !important; }
+  .dark main .text-gray-500   { color: var(--text-3) !important; }
+  .dark main .text-gray-400   { color: var(--text-muted) !important; }
+  .dark main .text-gray-300   { color: var(--text-muted) !important; }
+
+  /* ── Neutros: hover ────────────────────────────────────────────────── */
+  .dark main .hover\:bg-gray-50:hover  { background-color: var(--surface-2) !important; }
+  .dark main .hover\:bg-gray-100:hover { background-color: var(--surface-3) !important; }
+
+  /* ── Inputs / textareas / selects ──────────────────────────────────── */
+  .dark main input,
+  .dark main textarea,
+  .dark main select {
+    background-color: var(--surface) !important;
+    color: var(--text-1) !important;
+    border-color: var(--border-strong) !important;
+  }
+  .dark main input::placeholder,
+  .dark main textarea::placeholder { color: var(--text-muted) !important; }
+
+  /* ── Acentos · rellenos pálidos (-50/-100) → lavados translúcidos ──── */
+  .dark main .bg-emerald-50   { background-color: rgba(52,211,153,0.10) !important; }
+  .dark main .bg-emerald-100  { background-color: rgba(52,211,153,0.16) !important; }
+  .dark main .bg-green-50     { background-color: rgba(74,222,128,0.10) !important; }
+  .dark main .bg-teal-50      { background-color: rgba(20,184,166,0.10) !important; }
+  .dark main .bg-blue-50      { background-color: rgba(96,165,250,0.10) !important; }
+  .dark main .bg-blue-100     { background-color: rgba(96,165,250,0.16) !important; }
+  .dark main .bg-purple-50    { background-color: rgba(192,132,252,0.10) !important; }
+  .dark main .bg-amber-50     { background-color: rgba(251,191,36,0.10) !important; }
+  .dark main .bg-amber-100    { background-color: rgba(251,191,36,0.16) !important; }
+  .dark main .bg-orange-100   { background-color: rgba(251,146,60,0.14) !important; }
+  .dark main .bg-red-50       { background-color: rgba(248,113,113,0.10) !important; }
+
+  /* ── Acentos · rellenos OPACOS (calendario y similares) ────────────── */
+  .dark main .bg-emerald-400  { background-color: rgba(52,211,153,0.30) !important; }
+  .dark main .bg-amber-300    { background-color: rgba(251,191,36,0.28) !important; }
+  .dark main .bg-red-300      { background-color: rgba(248,113,113,0.28) !important; }
+  .dark main .bg-purple-400   { background-color: rgba(192,132,252,0.30) !important; }
+  .dark main .bg-blue-400     { background-color: rgba(96,165,250,0.30) !important; }
+
+  /* ── Acentos · ring del calendario (día actual) ────────────────────── */
+  .dark main .ring-emerald-500 { --tw-ring-color: rgba(52,211,153,0.60) !important; }
+
+  /* hover tints translúcidos (-50/30) */
+  .dark main .hover\:bg-emerald-50\/30:hover { background-color: rgba(52,211,153,0.08) !important; }
+  .dark main .hover\:bg-blue-50\/30:hover    { background-color: rgba(96,165,250,0.08) !important; }
+  .dark main .hover\:bg-purple-50\/30:hover  { background-color: rgba(192,132,252,0.08) !important; }
+
+  /* ── Acentos · texto (-600/-700) → se ACLARAN (-400) para legibilidad ─ */
+  .dark main .text-emerald-500 { color: #6ee7b7 !important; }
+  .dark main .text-emerald-600 { color: #6ee7b7 !important; }
+  .dark main .text-emerald-700 { color: #6ee7b7 !important; }
+  .dark main .text-green-600   { color: #86efac !important; }
+  .dark main .text-blue-500    { color: #93c5fd !important; }
+  .dark main .text-blue-600    { color: #93c5fd !important; }
+  .dark main .text-blue-700    { color: #93c5fd !important; }
+  .dark main .text-purple-500  { color: #d8b4fe !important; }
+  .dark main .text-purple-600  { color: #d8b4fe !important; }
+  .dark main .text-amber-600   { color: #fcd34d !important; }
+  .dark main .text-amber-700   { color: #fcd34d !important; }
+  .dark main .text-amber-800   { color: #fde68a !important; }
+  .dark main .text-orange-400  { color: #fdba74 !important; }
+  .dark main .text-orange-500  { color: #fdba74 !important; }
+  .dark main .text-orange-700  { color: #fdba74 !important; }
+  .dark main .text-red-500     { color: #fca5a5 !important; }
+  .dark main .text-red-600     { color: #fca5a5 !important; }
+
+  /* ── Acentos · bordes (-100/-200/-300) → translúcidos ──────────────── */
+  .dark main .border-emerald-100 { border-color: rgba(110,231,183,0.18) !important; }
+  .dark main .border-emerald-200 { border-color: rgba(110,231,183,0.26) !important; }
+  .dark main .border-emerald-300 { border-color: rgba(110,231,183,0.36) !important; }
+  .dark main .border-green-200   { border-color: rgba(134,239,172,0.26) !important; }
+  .dark main .border-blue-100    { border-color: rgba(147,197,253,0.18) !important; }
+  .dark main .border-blue-200    { border-color: rgba(147,197,253,0.26) !important; }
+  .dark main .border-blue-300    { border-color: rgba(147,197,253,0.36) !important; }
+  .dark main .border-purple-200  { border-color: rgba(216,180,254,0.26) !important; }
+  .dark main .border-purple-300  { border-color: rgba(216,180,254,0.36) !important; }
+  .dark main .border-amber-200   { border-color: rgba(252,211,77,0.26) !important; }
+  .dark main .border-amber-300   { border-color: rgba(252,211,77,0.36) !important; }
+  .dark main .border-orange-300  { border-color: rgba(253,186,116,0.36) !important; }
+  .dark main .border-red-200     { border-color: rgba(252,165,165,0.26) !important; }
+
+  /* ── Gradientes (tarjeta resumen IA en reportes) ───────────────────── */
+  .dark main .from-emerald-50 {
+    --tw-gradient-from: rgba(52,211,153,0.10) var(--tw-gradient-from-position) !important;
+    --tw-gradient-to: rgba(52,211,153,0) var(--tw-gradient-to-position) !important;
+    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to) !important;
+  }
+  .dark main .to-blue-50 {
+    --tw-gradient-to: rgba(96,165,250,0.10) var(--tw-gradient-to-position) !important;
+  }
+
+  /* ── Overlay de modales un poco más profundo en oscuro ─────────────── */
+  .dark main .bg-black\/50 { background-color: rgba(0,0,0,0.70) !important; }
+
+  /* ── Recharts: estilos globales para modo oscuro ───────────────────── */
+  .dark main .recharts-cartesian-grid line {
+    stroke: var(--chart-grid) !important;
+  }
+  .dark main .recharts-cartesian-axis-tick text {
+    fill: var(--chart-axis) !important;
+  }
+  .dark main .recharts-default-tooltip {
+    background-color: var(--chart-tooltip-bg) !important;
+    border-color: var(--chart-tooltip-border) !important;
+  }
+  .dark main .recharts-tooltip-item,
+  .dark main .recharts-default-tooltip .recharts-tooltip-label {
+    color: var(--chart-tooltip-text) !important;
+  }
+  .dark main .recharts-legend-item-text {
+    color: var(--text-2) !important;
+  }
+
+/* ════════════════════════════════════════════════════════════════════════
+   COMPONENTES — basados en tokens (funcionan en ambos modos sin overrides)
+   ════════════════════════════════════════════════════════════════════════ */
+@layer components {
+  .card {
+    @apply rounded-2xl border shadow-sm;
+    background-color: var(--surface);
+    border-color: var(--border-soft);
+  }
+
+  .input-base {
+    @apply w-full rounded-xl border px-3 py-2 text-sm
+           focus:outline-none focus:ring-2 focus:ring-teal-400 focus:border-transparent
+           transition-shadow;
+    background-color: var(--surface);
+    color: var(--text-1);
+    border-color: var(--border);
+  }
+
+  .btn-primary {
+    @apply bg-teal-500 hover:bg-teal-600 active:bg-teal-700
+           text-white font-semibold rounded-xl px-4 py-2 text-sm
+           transition-colors shadow-sm;
+  }
+
+  .btn-ghost {
+    @apply border text-teal-700 hover:bg-teal-50
+           font-medium rounded-xl px-4 py-2 text-sm transition-colors;
+    border-color: var(--border);
+  }
+}

@@ -23,7 +23,8 @@
     "snack": "Merienda",
     "dinner": "Cena",
     "completed": "Completado",
-    "pending": "Pendiente"
+    "pending": "Pendiente",
+    "series": "series"
   },
   "habits": {
     "title": "Hábitos",
@@ -35,6 +36,7 @@
     "color": "Color",
     "frequency": "Frecuencia",
     "target": "Objetivo",
+    "targetPlaceholder": "30 min, 8 vasos...",
     "streak": "Racha",
     "daily": "Diario",
     "custom": "Personalizado",
@@ -53,9 +55,17 @@
     "generate": "Generar Plan",
     "confirm": "Confirmar Plan",
     "regenerate": "Regenerar",
+    "generating": "Generando...",
     "noPlan": "No hay plan activo esta semana",
+    "noPlanHint": "Haz clic en \"Generar Plan\" para empezar",
     "weekly": "Semanal",
-    "pendingConfirmation": "Plan pendiente de confirmación"
+    "biweekly": "Quincenal",
+    "period": "Periodicidad",
+    "pendingConfirmation": "Plan pendiente de confirmación",
+    "pendingHint": "Revisa el plan y confírmalo para activarlo",
+    "weekOf": "Semana del",
+    "generateShopping": "Generar lista de compras",
+    "shoppingGenerated": "Lista de compras generada. Ve a la sección de Compras."
   },
   "workout": {
     "title": "Rutina de Ejercicio",
@@ -63,12 +73,31 @@
     "generate": "Generar Rutina",
     "confirm": "Confirmar",
     "regenerate": "Regenerar",
+    "generating": "Generando...",
     "noPlan": "No hay rutina activa esta semana",
+    "noPlanHint": "Haz clic en \"Generar Rutina\" para empezar",
     "sets": "Series",
     "reps": "Reps",
     "weight": "Peso",
+    "weightPlaceholder": "kg",
     "notes": "Notas",
-    "substitute": "Sustituir ejercicio"
+    "notesPlaceholder": "Ej: me dolió la rodilla, subí peso en press banca...",
+    "saveNotes": "Guardar nota",
+    "noteSaved": "Nota guardada",
+    "substitute": "Sustituir",
+    "substituteTitle": "Alternativas para",
+    "substituteLoading": "Buscando alternativas...",
+    "noSuggestions": "No se encontraron alternativas. Intenta de nuevo.",
+    "pendingConfirmation": "Rutina pendiente de confirmación",
+    "pendingHint": "Revisa los ejercicios y confírmalos para activarlos",
+    "weekOf": "Semana del",
+    "configureTitle": "Arma tu rutina",
+    "configureHint": "Elige tus días y cuánto tiempo tienes cada uno",
+    "daysLabel": "Días de entrenamiento",
+    "minutesUnit": "min",
+    "selectDays": "Selecciona al menos un día",
+    "adjust": "Ajustar días y tiempo",
+    "notesHint": "Apunta cómo te fue (pesos, lesiones, sensaciones). Se guarda por sesión."
   },
   "calendar": {
     "title": "Calendario",
@@ -77,12 +106,22 @@
     "month": "Mes",
     "completed": "Completado",
     "partial": "Parcial",
-    "pending": "Pendiente"
+    "pending": "Pendiente",
+    "none": "Nada cumplido",
+    "noActivity": "Sin actividad",
+    "upcoming": "Próximo",
+    "legend": "Leyenda",
+    "habits": "Hábitos",
+    "exercise": "Ejercicio",
+    "meals": "Comidas",
+    "complete": "Todo cumplido",
+    "noData": "Sin datos para este día"
   },
   "shopping": {
     "title": "Lista de Compras",
     "noList": "No hay lista activa. Genera un plan de comidas primero.",
     "purchased": "Comprado",
+    "purchasedCount": "comprados",
     "categories": {
       "fruits": "Frutas",
       "vegetables": "Verduras",
@@ -100,13 +139,26 @@
     "workouts": "Entrenamientos",
     "percentage": "Porcentaje",
     "comparison": "Comparación",
-    "previousWeek": "Semana Anterior"
+    "previousWeek": "Semana Anterior",
+    "vsPrevious": "vs semana anterior",
+    "summary": "Resumen de la semana",
+    "summaryLoading": "Generando resumen...",
+    "streaks": "Rachas por hábito",
+    "noStreaks": "Aún no tienes rachas activas",
+    "dailyActivity": "Actividad diaria",
+    "noData": "No hay datos para esta semana.",
+    "days": "días"
   },
   "chat": {
     "title": "Asistente IA",
     "placeholder": "Pregunta sobre tu plan, hábitos o progreso...",
     "send": "Enviar",
-    "loading": "Pensando..."
+    "loading": "Pensando...",
+    "greeting": "Hola, soy tu asistente LifeOS",
+    "intro": "Puedo ayudarte con tu plan de comidas, rutina de ejercicio, hábitos y más.",
+    "suggestion1": "¿Qué como mañana?",
+    "suggestion2": "¿Cómo voy esta semana?",
+    "suggestion3": "Genera un plan de comidas"
   },
   "setup": {
     "title": "Configuración de Perfil",
@@ -124,6 +176,7 @@
     "moderate": "Moderado",
     "active": "Activo",
     "restrictions": "Restricciones Alimentarias",
+    "addRestriction": "Añadir otra...",
     "mealPreferences": "Comidas a Planificar",
     "breakfast": "Desayuno",
     "lunch": "Almuerzo",
@@ -133,7 +186,19 @@
     "trainingType": "Tipo de Entrenamiento",
     "gym": "GYM con máquinas",
     "calisthenics": "Calistenia en casa",
-    "both": "Ambos"
+    "both": "Ambos",
+    "sectionPersonal": "Datos personales",
+    "sectionGoals": "Objetivos",
+    "sectionNutrition": "Nutrición",
+    "sectionTraining": "Entrenamiento"
+  },
+  "auth": {
+    "tagline": "Tu asistente personal de estilo de vida",
+    "email": "Email",
+    "password": "Contraseña",
+    "signIn": "Ingresar",
+    "signingIn": "Ingresando...",
+    "error": "Credenciales incorrectas. Verifica tu email y contraseña."
   },
   "common": {
     "save": "Guardar",
@@ -142,6 +207,7 @@
     "edit": "Editar",
     "close": "Cerrar",
     "confirm": "Confirmar",
+    "add": "Añadir",
     "loading": "Cargando...",
     "error": "Error",
     "success": "Operación exitosa",
@@ -153,5 +219,13 @@
     "fri": "Vie",
     "sat": "Sáb",
     "sun": "Dom"
+  },
+  "onboarding": {
+    "title": "Primeros pasos",
+    "workout": "Genera tu rutina",
+    "meals": "Planifica tus comidas",
+    "habits": "Crea un hábito",
+    "allDone": "¡Todo listo! 🎉",
+    "dismiss": "Ocultar"
   }
 }

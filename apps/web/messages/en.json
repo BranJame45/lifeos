@@ -23,7 +23,8 @@
     "snack": "Snack",
     "dinner": "Dinner",
     "completed": "Completed",
-    "pending": "Pending"
+    "pending": "Pending",
+    "series": "sets"
   },
   "habits": {
     "title": "Habits",
@@ -35,6 +36,7 @@
     "color": "Color",
     "frequency": "Frequency",
     "target": "Target",
+    "targetPlaceholder": "30 min, 8 glasses...",
     "streak": "Streak",
     "daily": "Daily",
     "custom": "Custom",
@@ -53,9 +55,17 @@
     "generate": "Generate Plan",
     "confirm": "Confirm Plan",
     "regenerate": "Regenerate",
+    "generating": "Generating...",
     "noPlan": "No active plan this week",
+    "noPlanHint": "Click \"Generate Plan\" to start",
     "weekly": "Weekly",
-    "pendingConfirmation": "Plan pending confirmation"
+    "biweekly": "Biweekly",
+    "period": "Frequency",
+    "pendingConfirmation": "Plan pending confirmation",
+    "pendingHint": "Review the plan and confirm it to activate",
+    "weekOf": "Week of",
+    "generateShopping": "Generate shopping list",
+    "shoppingGenerated": "Shopping list generated. Go to the Shopping section."
   },
   "workout": {
     "title": "Workout Routine",
@@ -63,12 +73,31 @@
     "generate": "Generate Routine",
     "confirm": "Confirm",
     "regenerate": "Regenerate",
+    "generating": "Generating...",
     "noPlan": "No active routine this week",
+    "noPlanHint": "Click \"Generate Routine\" to start",
     "sets": "Sets",
     "reps": "Reps",
     "weight": "Weight",
+    "weightPlaceholder": "kg",
     "notes": "Notes",
-    "substitute": "Substitute exercise"
+    "notesPlaceholder": "E.g. my knee hurt, increased weight on bench press...",
+    "saveNotes": "Save note",
+    "noteSaved": "Note saved",
+    "substitute": "Substitute",
+    "substituteTitle": "Alternatives for",
+    "substituteLoading": "Looking for alternatives...",
+    "noSuggestions": "No alternatives found. Try again.",
+    "pendingConfirmation": "Routine pending confirmation",
+    "pendingHint": "Review the exercises and confirm them to activate",
+    "weekOf": "Week of",
+    "configureTitle": "Build your routine",
+    "configureHint": "Pick your days and how much time you have each one",
+    "daysLabel": "Training days",
+    "minutesUnit": "min",
+    "selectDays": "Select at least one day",
+    "adjust": "Adjust days and time",
+    "notesHint": "Jot down how it went (weights, injuries, how you felt). Saved per session."
   },
   "calendar": {
     "title": "Calendar",
@@ -77,12 +106,22 @@
     "month": "Month",
     "completed": "Completed",
     "partial": "Partial",
-    "pending": "Pending"
+    "pending": "Pending",
+    "none": "Nothing completed",
+    "noActivity": "No activity",
+    "upcoming": "Upcoming",
+    "legend": "Legend",
+    "habits": "Habits",
+    "exercise": "Exercise",
+    "meals": "Meals",
+    "complete": "All completed",
+    "noData": "No data for this day"
   },
   "shopping": {
     "title": "Shopping List",
     "noList": "No active list. Generate a meal plan first.",
     "purchased": "Purchased",
+    "purchasedCount": "purchased",
     "categories": {
       "fruits": "Fruits",
       "vegetables": "Vegetables",
@@ -100,13 +139,26 @@
     "workouts": "Workouts",
     "percentage": "Percentage",
     "comparison": "Comparison",
-    "previousWeek": "Previous Week"
+    "previousWeek": "Previous Week",
+    "vsPrevious": "vs previous week",
+    "summary": "Week summary",
+    "summaryLoading": "Generating summary...",
+    "streaks": "Streaks by habit",
+    "noStreaks": "No active streaks yet",
+    "dailyActivity": "Daily activity",
+    "noData": "No data for this week.",
+    "days": "days"
   },
   "chat": {
     "title": "AI Assistant",
     "placeholder": "Ask about your plan, habits or progress...",
     "send": "Send",
-    "loading": "Thinking..."
+    "loading": "Thinking...",
+    "greeting": "Hi, I'm your LifeOS assistant",
+    "intro": "I can help you with your meal plan, workout routine, habits and more.",
+    "suggestion1": "What do I eat tomorrow?",
+    "suggestion2": "How am I doing this week?",
+    "suggestion3": "Generate a meal plan"
   },
   "setup": {
     "title": "Profile Setup",
@@ -124,6 +176,7 @@
     "moderate": "Moderate",
     "active": "Active",
     "restrictions": "Dietary Restrictions",
+    "addRestriction": "Add another...",
     "mealPreferences": "Meals to Plan",
     "breakfast": "Breakfast",
     "lunch": "Lunch",
@@ -133,7 +186,19 @@
     "trainingType": "Training Type",
     "gym": "GYM with machines",
     "calisthenics": "Calisthenics at home",
-    "both": "Both"
+    "both": "Both",
+    "sectionPersonal": "Personal data",
+    "sectionGoals": "Goals",
+    "sectionNutrition": "Nutrition",
+    "sectionTraining": "Training"
+  },
+  "auth": {
+    "tagline": "Your personal lifestyle assistant",
+    "email": "Email",
+    "password": "Password",
+    "signIn": "Sign in",
+    "signingIn": "Signing in...",
+    "error": "Invalid credentials. Check your email and password."
   },
   "common": {
     "save": "Save",
@@ -142,6 +207,7 @@
     "edit": "Edit",
     "close": "Close",
     "confirm": "Confirm",
+    "add": "Add",
     "loading": "Loading...",
     "error": "Error",
     "success": "Operation successful",
@@ -153,5 +219,13 @@
     "fri": "Fri",
     "sat": "Sat",
     "sun": "Sun"
+  },
+  "onboarding": {
+    "title": "Getting started",
+    "workout": "Generate your routine",
+    "meals": "Plan your meals",
+    "habits": "Create a habit",
+    "allDone": "All set! 🎉",
+    "dismiss": "Hide"
   }
 }

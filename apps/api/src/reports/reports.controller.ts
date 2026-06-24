@@ -20,4 +20,13 @@ export class ReportsController {
   ) {
     return this.reportsService.getComparison(req.user.id, new Date(week1), new Date(week2));
   }
+
+  @Get('summary')
+  getSummary(
+    @Req() req: any,
+    @Query('weekStart') weekStart: string,
+    @Query('locale') locale: string,
+  ) {
+    return this.reportsService.getSummary(req.user.id, new Date(weekStart), locale || 'es');
+  }
 }

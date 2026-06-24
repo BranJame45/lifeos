@@ -9,14 +9,29 @@ export class AiService {
     private readonly contextBuilder: ContextBuilder,
   ) {}
 
-  async chat(userId: string, message: string) {
+  async getHistory(userId: string) {
+    return this.prisma.chatMessage.findMany({
+      where: { userId },
+      orderBy: { createdAt: 'asc' },
+      take: 50,
+    });
+  }
+
+  async chat(userId: string, message: string, locale = 'es') {
     const userContext = await this.contextBuilder.buildUserContext(userId);
 
     await this.prisma.chatMessage.create({
       data: { userId, role: 'user', content: message },
     });
 
+    const languageRule =
+      locale === 'en'
+        ? 'IMPORTANT: Reply ALWAYS in English, regardless of the language of the context below.'
+        : 'IMPORTANTE: Responde SIEMPRE en español.';
+
     const systemPrompt = `Eres un asistente de estilo de vida personal.
+${languageRule}
+
 Contexto del usuario:
 ${userContext}
 

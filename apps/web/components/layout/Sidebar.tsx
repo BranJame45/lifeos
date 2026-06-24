@@ -1,19 +1,21 @@
 'use client';
-import { useTranslations, usePathname, useRouter } from '@/i18n/routing';
+import { useTranslations } from 'next-intl';
+import { usePathname, useRouter } from '@/i18n/routing';
 import {
   Sun, Calendar, Apple, Dumbbell, CheckSquare,
   ShoppingCart, BarChart3, MessageSquare, Settings,
 } from 'lucide-react';
+import GettingStarted from './GettingStarted';
 
 const navItems = [
-  { href: '/today', icon: Sun, labelKey: 'today' },
-  { href: '/calendar', icon: Calendar, labelKey: 'calendar' },
-  { href: '/nutrition', icon: Apple, labelKey: 'nutrition' },
-  { href: '/workout', icon: Dumbbell, labelKey: 'workout' },
-  { href: '/habits', icon: CheckSquare, labelKey: 'habits' },
-  { href: '/shopping', icon: ShoppingCart, labelKey: 'shopping' },
-  { href: '/reports', icon: BarChart3, labelKey: 'reports' },
-  { href: '/chat', icon: MessageSquare, labelKey: 'chat' },
+  { href: '/today',     icon: Sun,          labelKey: 'today' },
+  { href: '/calendar',  icon: Calendar,     labelKey: 'calendar' },
+  { href: '/nutrition', icon: Apple,        labelKey: 'nutrition' },
+  { href: '/workout',   icon: Dumbbell,     labelKey: 'workout' },
+  { href: '/habits',    icon: CheckSquare,  labelKey: 'habits' },
+  { href: '/shopping',  icon: ShoppingCart, labelKey: 'shopping' },
+  { href: '/reports',   icon: BarChart3,    labelKey: 'reports' },
+  { href: '/chat',      icon: MessageSquare,labelKey: 'chat' },
 ];
 
 export default function Sidebar() {
@@ -22,11 +24,26 @@ export default function Sidebar() {
   const router = useRouter();
 
   return (
-    <aside className="w-64 bg-white border-r border-gray-200 flex flex-col">
-      <div className="p-4 border-b border-gray-200">
-        <h1 className="text-xl font-bold text-emerald-600">LifeOS</h1>
+    <aside className="w-60 flex flex-col"
+      style={{ background: 'linear-gradient(180deg, #0f4f4a 0%, #0a3b37 100%)' }}>
+
+      {/* Logo */}
+      <div className="px-5 py-5 flex items-center gap-2.5">
+        <div className="w-8 h-8 rounded-xl flex items-center justify-center"
+          style={{ background: 'linear-gradient(135deg, #2dd4bf, #14b8a6)' }}>
+          <span className="text-white text-sm font-black">L</span>
+        </div>
+        <div>
+          <span className="text-white font-bold text-base tracking-wide">LifeOS</span>
+          <p className="text-teal-400 text-[10px] font-medium leading-none mt-0.5">lifestyle · os</p>
+        </div>
       </div>
-      <nav className="flex-1 p-2 space-y-1">
+
+      {/* Divider */}
+      <div className="mx-4 h-px bg-teal-800/60 mb-2" />
+
+      {/* Nav */}
+      <nav className="flex-1 px-3 py-2 space-y-0.5">
         {navItems.map((item) => {
           const Icon = item.icon;
           const isActive = pathname === item.href;
@@ -34,22 +51,38 @@ export default function Sidebar() {
             <button
               key={item.href}
               onClick={() => router.push(item.href)}
-              className={`w-full flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
-                isActive ? 'bg-emerald-50 text-emerald-700' : 'text-gray-600 hover:bg-gray-50'
+              onMouseEnter={() => router.prefetch(item.href)}
+              className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all duration-150 ${
+                isActive
+                  ? 'text-white'
+                  : 'text-teal-300/80 hover:text-teal-100 hover:bg-teal-800/40'
               }`}
+              style={isActive ? {
+                background: 'linear-gradient(90deg, rgba(45,212,191,0.22) 0%, rgba(45,212,191,0.08) 100%)',
+                boxShadow: 'inset 3px 0 0 #2dd4bf',
+              } : undefined}
             >
-              <Icon size={18} />
+              <Icon size={17} className={isActive ? 'text-teal-300' : ''} />
               {t(item.labelKey)}
             </button>
           );
         })}
       </nav>
-      <div className="p-4 border-t border-gray-200">
+
+      {/* Primeros pasos (se auto-oculta al completar) */}
+      <GettingStarted />
+
+      {/* Divider */}
+      <div className="mx-4 h-px bg-teal-800/60 mt-1" />
+
+      {/* Setup */}
+      <div className="px-3 py-3">
         <button
           onClick={() => router.push('/setup')}
-          className="w-full flex items-center gap-3 px-3 py-2 rounded-lg text-sm text-gray-600 hover:bg-gray-50 transition-colors"
+          onMouseEnter={() => router.prefetch('/setup')}
+          className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm text-teal-300/80 hover:text-teal-100 hover:bg-teal-800/40 transition-all duration-150"
         >
-          <Settings size={18} />
+          <Settings size={17} />
           {t('setup')}
         </button>
       </div>

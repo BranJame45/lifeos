@@ -1,28 +1,25 @@
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
-import Sidebar from '@/components/layout/Sidebar';
-import Header from '@/components/layout/Header';
+import AppShell from '@/components/layout/AppShell';
+import { ThemeProvider } from '@/lib/theme';
 import '../globals.css';
 
-type Props = { children: React.ReactNode; params: { locale: string } };
+type Props = { children: React.ReactNode; params: Promise<{ locale: string }> };
 
 export function generateStaticParams() {
   return [{ locale: 'es' }, { locale: 'en' }];
 }
 
-export default async function LocaleLayout({ children, params: { locale } }: Props) {
+export default async function LocaleLayout({ children, params }: Props) {
+  const { locale } = await params;
   const messages = await getMessages();
   return (
-    <html lang={locale}>
-      <body className="bg-gray-50 text-gray-900 antialiased">
+    <html lang={locale} suppressHydrationWarning>
+      <body className="antialiased" style={{ backgroundColor: 'var(--bg-app)', color: 'var(--text-1)' }}>
         <NextIntlClientProvider messages={messages}>
-          <div className="flex h-screen">
-            <Sidebar />
-            <div className="flex-1 flex flex-col overflow-hidden">
-              <Header />
-              <main className="flex-1 overflow-y-auto p-6">{children}</main>
-            </div>
-          </div>
+          <ThemeProvider>
+            <AppShell>{children}</AppShell>
+          </ThemeProvider>
         </NextIntlClientProvider>
       </body>
     </html>

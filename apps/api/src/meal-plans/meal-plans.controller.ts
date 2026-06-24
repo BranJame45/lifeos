@@ -12,9 +12,14 @@ export class MealPlansController {
     return this.mealPlansService.getCurrent(req.user.id);
   }
 
+  @Get('preview')
+  getPreview(@Req() req: any) {
+    return this.mealPlansService.getPreview(req.user.id);
+  }
+
   @Post('generate')
-  generate(@Req() req: any) {
-    return this.mealPlansService.generate(req.user.id);
+  generate(@Req() req: any, @Body() body: { weeks?: number }) {
+    return this.mealPlansService.generate(req.user.id, body?.weeks === 2 ? 2 : 1);
   }
 
   @Post('confirm/:id')

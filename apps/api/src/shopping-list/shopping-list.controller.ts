@@ -1,4 +1,4 @@
-import { Controller, Get, Patch, Param, UseGuards, Req } from '@nestjs/common';
+import { Controller, Get, Post, Patch, Param, UseGuards, Req } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { ShoppingListService } from './shopping-list.service';
 
@@ -10,6 +10,11 @@ export class ShoppingListController {
   @Get('current')
   getCurrent(@Req() req: any) {
     return this.shoppingListService.getCurrent(req.user.id);
+  }
+
+  @Post('generate/:planId')
+  generateFromPlan(@Req() req: any, @Param('planId') planId: string) {
+    return this.shoppingListService.generateFromPlan(req.user.id, planId);
   }
 
   @Patch('item/:id')

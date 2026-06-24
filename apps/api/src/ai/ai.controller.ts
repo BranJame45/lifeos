@@ -7,8 +7,13 @@ import { AiService } from './ai.service';
 export class AiController {
   constructor(private readonly aiService: AiService) {}
 
+  @Get('chat')
+  async getHistory(@Req() req: any) {
+    return this.aiService.getHistory(req.user.id);
+  }
+
   @Post('chat')
-  async chat(@Req() req: any, @Body() body: { message: string }) {
-    return this.aiService.chat(req.user.id, body.message);
+  async chat(@Req() req: any, @Body() body: { message: string; locale?: string }) {
+    return this.aiService.chat(req.user.id, body.message, body.locale || 'es');
   }
 }

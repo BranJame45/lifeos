@@ -19,20 +19,22 @@ export class HabitsService {
     const today = new Date();
     today.setHours(0, 0, 0, 0);
 
-    const habits = await this.prisma.habit.findMany({
-      where: {
-        userId,
-        active: true,
-        OR: [
-          { frequency: { has: 'daily' } },
-          { frequency: { has: dayName } },
-        ],
-      },
-    });
-
-    const logs = await this.prisma.habitLog.findMany({
-      where: { userId, date: today },
-    });
+    // Ambas consultas son independientes -> en paralelo (un solo round-trip).
+    const [habits, logs] = await Promise.all([
+      this.prisma.habit.findMany({
+        where: {
+          userId,
+          active: true,
+          OR: [
+            { frequency: { has: 'daily' } },
+            { frequency: { has: dayName } },
+          ],
+        },
+      }),
+      this.prisma.habitLog.findMany({
+        where: { userId, date: today },
+      }),
+    ]);
 
     const loggedIds = new Set(logs.map((l) => l.habitId));
     return habits.map((h) => ({
